@@ -1,0 +1,97 @@
+<div class="container-fluid vh-100 p-0">
+  <div class="row h-100 g-0">
+    <!-- Added g-0 to remove gutters -->
+    <!-- Left Division with Image -->
+    <!-- <div class="col-md-7 p-0">
+      <img
+        src="https://blog.nfon.com/hubfs/shutterstock_1687381003.jpg"
+        alt="Login Image"
+        class="img-fluid h-100 w-100"
+        style="object-fit: cover"
+      />
+    </div> -->
+    <!-- Left Division with Gradient Background -->
+    <div class="col-md-7 p-0 h-100 gradient-bg"></div>
+
+    <!-- Right Division with Login Form -->
+    <div class="col-md-5 d-flex align-items-center justify-content-center">
+      <div class="w-75">
+        <h2 class="text-center mb-4">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            />
+            <div
+              *ngIf="
+                loginForm.get('email')!.invalid &&
+                loginForm.get('email')!.touched
+              "
+              class="text-danger"
+            >
+              <small *ngIf="loginForm.get('email')!.errors!['required']"
+                >Email is required.</small
+              >
+              <small *ngIf="loginForm.get('email')!.errors!['email']"
+                >Invalid email format.</small
+              >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+            />
+            <div
+              *ngIf="
+                loginForm.get('password')!.invalid &&
+                loginForm.get('password')!.touched
+              "
+              class="text-danger"
+            >
+              <small *ngIf="loginForm.get('password')!.errors!['required']"
+                >Password is required.</small
+              >
+            </div>
+          </div>
+          <div class="form-group text-right">
+            <a href="#" class="text-muted">Forgot Password?</a>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary btn-block"
+            [disabled]="loginForm.invalid || isLoading"
+          >
+            <span *ngIf="!isLoading">Login</span>
+            <span *ngIf="isLoading">
+              <span
+                class="spinner-border spinner-border-sm"
+                role="status"
+                aria-hidden="true"
+              ></span>
+              Logging in...
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast for Success/Error Messages -->
+<ngb-toast
+  *ngIf="showToast"
+  [header]="toastHeader"
+  [class]="toastClass"
+  (hidden)="showToast = false"
+  [autohide]="true"
+>
+  {{ toastMessage }}
+</ngb-toast>

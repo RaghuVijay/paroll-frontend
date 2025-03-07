@@ -1,0 +1,153 @@
+/* Sidenav Container */
+.sidenav {
+  width: 250px;
+  height: 100vh;
+  background-color: #1e293b; /* Darker blue */
+  color: white;
+  transition: width 0.3s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Collapsed State */
+.sidenav.collapsed {
+  width: 60px;
+}
+
+/* Organization Section */
+.organization-section {
+  padding: 16px;
+  border-bottom: 1px solid #334155; /* Darker border */
+  background-color: #1e293b; /* Darker blue */
+}
+
+/* Organization Dropdown */
+.organization-dropdown {
+  flex-grow: 1;
+}
+
+.organization-dropdown .dropdown-toggle {
+  width: 100%;
+  text-align: left;
+  background-color: #334155; /* Darker blue */
+  border: 1px solid #475569; /* Darker border */
+  color: white;
+}
+
+.organization-dropdown .dropdown-toggle:hover {
+  background-color: #475569; /* Darker blue */
+}
+
+.organization-dropdown .dropdown-menu {
+  width: 100%;
+  background-color: #1e293b; /* Darker blue */
+  border: 1px solid #475569; /* Darker border */
+  padding: 8px;
+}
+
+.organization-dropdown .dropdown-item {
+  color: white;
+}
+
+.organization-dropdown .dropdown-item:hover {
+  background-color: #475569; /* Darker blue */
+}
+
+/* Plus Icon */
+.btn-link {
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 8px;
+}
+
+.btn-link:hover {
+  background-color: #475569; /* Darker blue */
+}
+
+/* Search Bar */
+.form-control {
+  background-color: #334155; /* Darker blue */
+  border: 1px solid #475569; /* Darker border */
+  color: white;
+}
+
+.form-control:focus {
+  background-color: #334155; /* Darker blue */
+  border-color: #3f51b5; /* Indigo */
+  box-shadow: none;
+}
+
+/* Organization List */
+.organization-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* Nav Items */
+.nav {
+  padding: 16px;
+  flex-grow: 1; /* Allow nav items to take up remaining space */
+}
+
+.nav-item {
+  margin-bottom: 8px;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: #475569; /* Darker blue */
+}
+
+.nav-link i {
+  font-size: 18px;
+}
+
+.nav-text {
+  margin-left: 8px;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide text when collapsed */
+.sidenav.collapsed .nav-text {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+/* Settings Section */
+.settings-section {
+  padding: 16px;
+  border-top: 1px solid #334155; /* Darker border */
+  background-color: #1e293b; /* Darker blue */
+  margin-top: auto; /* Push to the bottom */
+}
+
+.settings-section .nav-link {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.settings-section .nav-link:hover {
+  background-color: #475569; /* Darker blue */
+}

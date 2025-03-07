@@ -1,0 +1,117 @@
+<div class="settings-container">
+  <div class="card">
+    <!-- Tab Navigation -->
+    <ul ngbNav #nav="ngbNav" class="nav-tabs">
+      <!-- Organization Tab -->
+      <li ngbNavItem>
+        <a ngbNavLink>Organization</a>
+        <ng-template ngbNavContent>
+          <!-- Organization Onboarding Form -->
+          <div class="form-section">
+            <h3>Organization Details</h3>
+            <div class="form-grid">
+              <!-- Organization Name -->
+              <div class="form-group floating-label">
+                <input type="text" id="organizationName" placeholder=" " />
+                <label for="organizationName">Organization Name</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Organization Email -->
+              <div class="form-group floating-label">
+                <input type="email" id="organizationEmail" placeholder=" " />
+                <label for="organizationEmail">Organization Email</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Organization Phone -->
+              <div class="form-group floating-label">
+                <input type="text" id="organizationPhone" placeholder=" " />
+                <label for="organizationPhone">Organization Phone</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Organization Address -->
+              <div class="form-group floating-label">
+                <input type="text" id="organizationAddress" placeholder=" " />
+                <label for="organizationAddress">Organization Address</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Organization Website -->
+              <div class="form-group floating-label">
+                <input type="text" id="organizationWebsite" placeholder=" " />
+                <label for="organizationWebsite">Organization Website</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Organization Description -->
+              <div class="form-group floating-label">
+                <textarea
+                  id="organizationDescription"
+                  placeholder=" "
+                ></textarea>
+                <label for="organizationDescription"
+                  >Organization Description</label
+                >
+                <div class="error-message">Error message here</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Org Admin Details -->
+          <div class="form-section">
+            <h3>Organization Admin Details</h3>
+            <div class="form-grid">
+              <!-- Admin Name -->
+              <div class="form-group floating-label">
+                <input type="text" id="orgAdminName" placeholder=" " />
+                <label for="orgAdminName">Admin Name</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Admin Email -->
+              <div class="form-group floating-label">
+                <input type="email" id="orgAdminEmail" placeholder=" " />
+                <label for="orgAdminEmail">Admin Email</label>
+                <div class="error-message">Error message here</div>
+              </div>
+
+              <!-- Admin Mobile -->
+              <div class="form-group floating-label">
+                <input type="text" id="orgAdminMobile" placeholder=" " />
+                <label for="orgAdminMobile">Admin Mobile</label>
+                <div class="error-message">Error message here</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Buttons -->
+          <div class="form-buttons">
+            <button type="button" class="btn btn-secondary">Reset</button>
+            <button type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </ng-template>
+      </li>
+
+      <!-- Controls Tab -->
+      <li ngbNavItem>
+        <a ngbNavLink>Controls</a>
+        <ng-template ngbNavContent>
+          <app-controls />
+        </ng-template>
+      </li>
+
+      <!-- Configure Tab -->
+      <li ngbNavItem>
+        <a ngbNavLink>Configure</a>
+        <ng-template ngbNavContent>
+          <app-configure />
+        </ng-template>
+      </li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div [ngbNavOutlet]="nav" class="mt-3"></div>
+  </div>
+</div>

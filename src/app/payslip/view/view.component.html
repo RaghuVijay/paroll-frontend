@@ -1,0 +1,98 @@
+<div class="view-container">
+  <!-- Edit Button -->
+  <div class="edit-button-container">
+    <button class="edit-button" (click)="onEdit()">
+      <i class="fas fa-edit"></i> Edit
+    </button>
+  </div>
+
+  <!-- Company Details -->
+  <div class="section">
+    <h2>Company Details</h2>
+    <div class="detail">
+      <label>Company Name:</label>
+      <span>{{ formData?.companyName }}</span>
+    </div>
+    <div class="detail">
+      <label>Company Address:</label>
+      <span>{{ formData?.companyAddress }}</span>
+    </div>
+    <div class="detail">
+      <label>City, Pincode:</label>
+      <span>{{ formData?.cityPincode }}</span>
+    </div>
+  </div>
+
+  <!-- Employee Details -->
+  <div class="section">
+    <h2>Employee Details</h2>
+    <div class="detail">
+      <label>Employee Name:</label>
+      <span>{{ formData?.employeeDetails?.employeeName }}</span>
+    </div>
+    <div class="detail">
+      <label>Employee ID:</label>
+      <span>{{ formData?.employeeDetails?.employeeId }}</span>
+    </div>
+    <div class="detail">
+      <label>Pay Period:</label>
+      <span>{{ formData?.employeeDetails?.payPeriod | date: 'MMMM yyyy' }}</span>
+    </div>
+    <div class="detail">
+      <label>Paid Days:</label>
+      <span>{{ formData?.employeeDetails?.paidDays }}</span>
+    </div>
+    <div class="detail">
+      <label>Loss of Pay Days:</label>
+      <span>{{ formData?.employeeDetails?.lossOfPayDays }}</span>
+    </div>
+    <div class="detail">
+      <label>Pay Date:</label>
+      <span>{{ formData?.employeeDetails?.payDate | date: 'dd/MM/yyyy' }}</span>
+    </div>
+  </div>
+
+  <!-- Income Details -->
+  <div class="section">
+    <h2>Income Details</h2>
+    <div class="earnings-deductions">
+      <div class="earnings">
+        <h3>Earnings</h3>
+        <div *ngFor="let earning of formData?.earnings" class="detail">
+          <label>{{ earning.label }}:</label>
+          <span>{{ earning.amount | currency:'INR' }}</span>
+        </div>
+      </div>
+      <div class="deductions">
+        <h3>Deductions</h3>
+        <div *ngFor="let deduction of formData?.deductions" class="detail">
+          <label>{{ deduction.label }}:</label>
+          <span>{{ deduction.amount | currency:'INR' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Totals -->
+  <div class="section">
+    <h2>Totals</h2>
+    <div class="totals">
+      <div class="detail">
+        <label>Gross Earnings:</label>
+        <span>{{ formData?.grossEarnings | currency:'INR' }}</span>
+      </div>
+      <div class="detail">
+        <label>Total Deductions:</label>
+        <span>{{ formData?.totalDeductions | currency:'INR' }}</span>
+      </div>
+      <div class="detail">
+        <label>Net Payable:</label>
+        <span class="net-payable">{{ formData?.netPayable | currency:'INR' }}</span>
+      </div>
+      <div class="detail">
+        <label>Amount in Words:</label>
+        <span>{{ formData?.amountInWords }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<nav class="sidenav" [ngClass]="{ collapsed: isCollapsed }">
+  <!-- Organization Dropdown and Plus Button -->
+  <div class="organization-section">
+    <!-- Organization Dropdown -->
+    <div ngbDropdown class="organization-dropdown">
+      <button
+        class="btn btn-outline-secondary dropdown-toggle"
+        ngbDropdownToggle
+      >
+        <i class="bi bi-building me-2"></i>
+        <span class="nav-text">{{
+          selectedOrganization || "Select Organization"
+        }}</span>
+      </button>
+      <div ngbDropdownMenu class="dropdown-menu p-2">
+        <!-- Plus Icon for New Organization -->
+        <button
+          class="btn btn-link text-decoration-none"
+          (click)="createNewOrganization()"
+        >
+          <i class="bi bi-plus"></i> New Organization
+        </button>
+
+        <!-- Search Bar -->
+        <input
+          type="text"
+          class="form-control mb-2"
+          placeholder="Search organizations..."
+          [(ngModel)]="searchQuery"
+          (input)="filterOrganizations()"
+        />
+
+        <!-- Organization List -->
+        <div class="organization-list">
+          <button
+            ngbDropdownItem
+            *ngFor="let org of filteredOrganizations"
+            (click)="selectOrganization(org)"
+          >
+            {{ org }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidenav Items -->
+  <ul class="nav flex-column">
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard">
+        <i class="bi bi-speedometer2 me-2"></i>
+        <span class="nav-text">Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Roles -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/roles">
+        <i class="bi bi-people me-2"></i>
+        <span class="nav-text">Roles</span>
+      </a>
+    </li>
+
+    <!-- Users -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/users">
+        <i class="bi bi-person me-2"></i>
+        <span class="nav-text">Users</span>
+      </a>
+    </li>
+
+    <!-- Payslips -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/payslip/list">
+        <i class="bi bi-file-earmark-text me-2"></i>
+        <span class="nav-text">Payslips</span>
+      </a>
+    </li>
+
+    <!-- Documents -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/documents">
+        <i class="bi bi-folder me-2"></i>
+        <span class="nav-text">Documents</span>
+      </a>
+    </li>
+
+    <!-- Reports -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/reports">
+        <i class="bi bi-bar-chart me-2"></i>
+        <span class="nav-text">Reports</span>
+      </a>
+    </li>
+  </ul>
+
+  <!-- Settings at the Bottom -->
+  <div class="settings-section">
+    <a class="nav-link" routerLink="/settings">
+      <i class="bi bi-gear me-2"></i>
+      <span class="nav-text">Settings</span>
+    </a>
+  </div>
+</nav>

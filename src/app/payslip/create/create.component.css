@@ -1,0 +1,131 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap'); */
+
+.payslip-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .form-control-lg {
+    border-radius: 8px;
+  }
+  
+  .btn-lg {
+    border-radius: 8px;
+  }
+  
+  .totals {
+    background: linear-gradient(135deg, #17a2b8, #138496);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .actions .btn {
+    transition: all 0.3s ease;
+  
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+/* Modern Font */
+
+#payslip-content {
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #333;
+  width: 210mm;
+  min-height: 297mm; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+
+  /* Header Section */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #4A90E2; 
+    color: #fff;
+    border-radius: 8px;
+    position: relative;
+    top: 0; 
+    left: 0;
+    right: 0;
+
+    .left {
+      text-align: left;
+      .address {
+        font-size: 14px;
+        margin: 0;
+        color: #fff;
+      }
+    }
+
+    .right {
+      text-align: right;
+      .initials {
+        font-size: 24px;
+        font-weight: 600;
+        margin: 0;
+        color: #fff;
+      }
+      .company-name {
+        font-size: 16px;
+        margin: 0;
+        color: #fff;
+      }
+    }
+  }
+
+  /* Payslip Details */
+  .payslip-details {
+    margin-top: 20px;
+
+    .payslip-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #4A90E2; 
+      margin-bottom: 20px;
+    }
+
+    .earnings-deductions-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+
+      th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+      }
+
+      th {
+        background-color: #F8F9FA; 
+        font-weight: 600;
+        color: #333;
+      }
+
+      tr:nth-child(even) {
+        background-color: #F8F9FA; 
+      }
+    }
+
+    .totals {
+      margin-top: 20px;
+      font-size: 16px;
+
+      p {
+        margin: 8px 0;
+        color: #333;
+      }
+
+      .net-payable {
+        font-size: 18px;
+        color: #50E3C2; 
+        font-weight: 600;
+      }
+    }
+  }
+}

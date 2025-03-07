@@ -1,0 +1,164 @@
+<div class="payslip-container p-4 bg-light">
+  <form [formGroup]="payslipForm" class="bg-white p-4 rounded shadow">
+    <!-- Company Details -->
+    <div class="company-details mb-4">
+      <h3 class="text-primary mb-3 fw-bold">Company Details</h3>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Company Name*</label>
+          <input type="text" formControlName="companyName" class="form-control form-control-lg" placeholder="Enter Company Name" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Company Address</label>
+          <input type="text" formControlName="companyAddress" class="form-control form-control-lg" placeholder="Enter Address" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">City</label>
+          <input type="text" formControlName="city" class="form-control form-control-lg" placeholder="City" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Employee Pay Summary -->
+    <div class="employee-summary mb-4" formGroupName="employeeDetails">
+      <h3 class="text-primary mb-3 fw-bold">Employee Details</h3>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Employee Name</label>
+          <input type="text" formControlName="employeeName" class="form-control form-control-lg" placeholder="Eg: Meera Krishnan" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Employee ID</label>
+          <input type="text" formControlName="employeeId" class="form-control form-control-lg" placeholder="Eg: 1234" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Pay Period</label>
+          <input type="month" formControlName="payPeriod" class="form-control form-control-lg" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Paid Days</label>
+          <input type="number" formControlName="paidDays" class="form-control form-control-lg" placeholder="Eg: 22" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Loss of Pay Days</label>
+          <input type="number" formControlName="lossOfPayDays" class="form-control form-control-lg" />
+        </div>
+        <div class="col-md-6">
+          <label class="form-label fw-medium">Pay Date</label>
+          <input type="date" formControlName="payDate" class="form-control form-control-lg" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Income Details -->
+    <div class="income-details mb-4">
+      <h3 class="text-primary mb-3 fw-bold">Income Details</h3>
+
+      <!-- Earnings Section -->
+      <div class="mb-4">
+        <h4 class="text-success mb-3 fw-bold">Earnings</h4>
+        <div formArrayName="earnings">
+          <div class="row g-3 mb-3" *ngFor="let earning of earnings.controls; let i = index" [formGroupName]="i">
+            <div class="col-md-5">
+              <input type="text" formControlName="label" class="form-control" placeholder="Earning Label" />
+            </div>
+            <div class="col-md-5">
+              <input type="number" formControlName="amount" class="form-control" placeholder="Amount" min="0" />
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-danger btn-sm w-100" (click)="removeEarning(i)">
+                <i class="bi bi-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-success btn-lg w-100" (click)="addEarning()">
+          <i class="bi bi-plus"></i> Add Earnings
+        </button>
+      </div>
+
+      <!-- Deductions Section -->
+      <div class="mb-4">
+        <h4 class="text-warning mb-3 fw-bold">Deductions</h4>
+        <div formArrayName="deductions">
+          <div class="row g-3 mb-3" *ngFor="let deduction of deductions.controls; let i = index" [formGroupName]="i">
+            <div class="col-md-5">
+              <input type="text" formControlName="label" class="form-control" placeholder="Deduction Label" />
+            </div>
+            <div class="col-md-5">
+              <input type="number" formControlName="amount" class="form-control" placeholder="Amount" min="0" />
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-danger btn-sm w-100" (click)="removeDeduction(i)">
+                <i class="bi bi-trash"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-warning btn-lg w-100" (click)="addDeduction()">
+          <i class="bi bi-plus"></i> Add Deductions
+        </button>
+      </div>
+    </div>
+
+    <!-- Total Calculations -->
+    <div class="totals mb-4 p-4 bg-info text-white rounded">
+      <h3 class="mb-3 fw-bold">Net Income</h3>
+      <p class="mb-2 fs-5">Gross Earnings: {{ calculateTotalEarnings() | currency:'INR' }}</p>
+      <p class="mb-2 fs-5">Total Deductions: {{ calculateTotalDeductions() | currency:'INR' }}</p>
+      <p class="mb-0 fs-5 fw-bold">Net Payable: {{ getNetPayable() | currency:'INR' }}</p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="actions d-flex gap-3">
+      <button type="button" class="btn btn-primary btn-lg flex-grow-1" (click)="generatePayslip()">
+        <i class="bi bi-file-earmark-text"></i> Update Payslip
+      </button>
+      <button type="button" class="btn btn-secondary btn-lg flex-grow-1" (click)="resetForm()">
+        <i class="bi bi-arrow-clockwise"></i> Reset
+      </button>
+    </div>
+  </form>
+
+  <!-- Hidden Payslip Content for PDF Generation -->
+  <div id="payslip-content" style="display: none;">
+    <!-- Header Section -->
+    <div class="header">
+      <div class="right">
+        <p class="address">{{ payslipForm.get('companyAddress')?.value }}, {{ payslipForm.get('cityPincode')?.value }}</p>
+      </div>
+      <div class="left">
+        <h2 class="initials">{{ getCompanyInitials() }}</h2>
+        <p class="company-name">{{ payslipForm.get('companyName')?.value }}</p>
+      </div>
+    </div>
+
+    <!-- Payslip Details -->
+    <div class="payslip-details">
+      <h3 class="payslip-title">Payslip for {{ payslipForm.get('employeeDetails.payPeriod')?.value | date: 'MMMM yyyy' }}</h3>
+      <table class="earnings-deductions-table">
+        <thead>
+          <tr>
+            <th>Earnings</th>
+            <th>Amount</th>
+            <th>Deductions</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let earning of earnings.controls; let i = index">
+            <td>{{ earning.get('label')?.value }}</td>
+            <td>{{ earning.get('amount')?.value | currency:'INR' }}</td>
+            <td *ngIf="deductions.controls[i]">{{ deductions.controls[i].get('label')?.value }}</td>
+            <td *ngIf="deductions.controls[i]">{{ deductions.controls[i].get('amount')?.value | currency:'INR' }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="totals">
+        <p><strong>Gross Earnings:</strong> {{ calculateTotalEarnings() | currency:'INR' }}</p>
+        <p><strong>Total Deductions:</strong> {{ calculateTotalDeductions() | currency:'INR' }}</p>
+        <p class="net-payable"><strong>Net Payable:</strong> {{ getNetPayable() | currency:'INR' }}</p>
+      </div>
+    </div>
+  </div>
+</div>

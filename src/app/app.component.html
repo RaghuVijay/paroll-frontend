@@ -1,0 +1,18 @@
+<div class="app-container">
+  <!-- Sidenav -->
+  <app-sidenav
+    *ngIf="isLoggedIn"
+    (toggleCollapse)="onToggleCollapse($event)"
+  ></app-sidenav>
+
+  <!-- Header and Main Content -->
+  <div class="content-container">
+    <!-- Header -->
+    <app-header *ngIf="isLoggedIn" [isCollapsed]="isCollapsed"></app-header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
